@@ -21,14 +21,14 @@ namespace API.Controllers
         }
         #region Operaciones
         [HttpPost]
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "2")]
         public async Task<IActionResult> Agregar([FromBody] VehiculoRequest vehiculo)
         {
             var resultado = await _vehiculoFlujo.Agregar(vehiculo);
             return CreatedAtAction(nameof(Obtener), new { Id = resultado }, null);
         }
         [HttpPut("{Id}")]
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "2")]
         public async Task<IActionResult> Editar([FromRoute] Guid Id, [FromBody] VehiculoRequest vehiculo)
         {
             if (!await VerificarVehiculoExiste(Id))
@@ -38,7 +38,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("{Id}")]
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "2")]
         public async Task<IActionResult> Eliminar([FromRoute] Guid Id)
         {
             if (!await VerificarVehiculoExiste(Id))
@@ -47,7 +47,7 @@ namespace API.Controllers
             return NoContent();
         }
         [HttpGet]
-        [Authorize(Roles = "2")]
+        [Authorize(Roles = "1")]
         public async Task<IActionResult> Obtener()
         {
             var resultado = await _vehiculoFlujo.Obtener();
@@ -56,7 +56,7 @@ namespace API.Controllers
             return Ok(resultado);
         }
         [HttpGet("{Id}")]
-        [Authorize(Roles = "2")]
+        [Authorize(Roles = "1")]
         public async Task<IActionResult> Obtener([FromRoute] Guid Id)
         {
             var resultado = await _vehiculoFlujo.Obtener(Id);

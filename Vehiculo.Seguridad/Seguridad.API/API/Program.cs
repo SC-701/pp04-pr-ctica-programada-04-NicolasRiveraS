@@ -51,6 +51,7 @@ builder.Services.AddTransient<Autorizacion.Abstracciones.Flujo.IAutorizacionFluj
 builder.Services.AddTransient<Autorizacion.Abstracciones.DA.ISeguridadDA, Autorizacion.DA.SeguridadDA>();
 builder.Services.AddTransient<Autorizacion.Abstracciones.DA.IRepositorioDapper, Autorizacion.DA.Repositorios.RepositorioDapper>();
 
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -62,6 +63,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 app.AutorizacionClaims();
 app.UseAuthorization();
 

@@ -36,6 +36,9 @@
                         <h1 class="workspace-title">Sistema de vehículos</h1>
                     </div>
                     <div class="workspace-meta">Programación Web Avanzada</div>
+                    <div class="workspace-meta">
+                        @await Html.PartialAsync("_AutenticacionParcial");
+                    </div>
                 </div>
 
                 @RenderBody()
